@@ -2,8 +2,8 @@ const User = require('../models/userModel');
 
 exports.createUser = async (req, res, next) => {
   try {
-    const name = req.body.name;
-    const user = await User.create({ name });
+    const name = req.body;
+    const user = await User.create(req.body);
 
     res.status(201).json({
       status: 'success',
@@ -18,7 +18,7 @@ exports.createUser = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findOne({ name: req.params.name });
     res.status(200).json({
       status: 'success',
       data: {
@@ -32,7 +32,10 @@ exports.getUser = async (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body.name);
+    const user = await User.findOneAndUpdate(
+      { name: req.params.name },
+      req.body
+    );
 
     res.status(200).json({
       status: 'success',
