@@ -81,7 +81,9 @@ exports.getUser = async (req, res, next) => {
 
 exports.getUserByName = async (req, res, next) => {
   try {
-    const user = await User.findOne({ name: req.params.name });
+    const name = req.params.name.trim();
+    console.log(name);
+    const user = await User.find({ name: req.params.name });
 
     res.status(200).json({
       status: 'success',
@@ -89,7 +91,13 @@ exports.getUserByName = async (req, res, next) => {
         user,
       },
     });
-  } catch (err) {}
+  } catch (err) {
+    res.status(404).json({
+      status: 'error',
+      message: err.message,
+    });
+    console.log(err.message);
+  }
 };
 
 exports.updateUser = async (req, res, next) => {

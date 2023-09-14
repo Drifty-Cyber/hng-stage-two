@@ -9,9 +9,6 @@ router.route('/').get(userController.getAllUsers);
 // Get User by ID
 router.get('/:id', userController.getUser);
 
-// Get User by name
-router.route('/:name').get(userController.getUserByName);
-
 // Create User
 router.route('/').post(userController.createUser);
 
@@ -20,5 +17,8 @@ router
   .route('/:id')
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
+
+// Get User by name
+router.route('/:name').get(userController.getUserByName);
 
 module.exports = router;
