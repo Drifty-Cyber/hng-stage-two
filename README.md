@@ -11,7 +11,7 @@ This documentation provides details on the CRUD (Create, Read, Update, Delete) e
 
 ## Base URL
 
-The base URL for all API endpoints is `https://your-api-domain.com/api`.
+The base URL for all API endpoints is `https://hng-stage-two-xrqn.onrender.com/api`.
 
 ## Create a New Person
 
