@@ -32,9 +32,11 @@ Content-Type: application/json
   "name": "John Doe",
   "age": 30
 }
+```
 
 Response Example (201 Created):
 
+```json
 {
   "status": "success",
   "data": {
@@ -58,10 +60,11 @@ Retrieve details of a person by their ID or Name.
 ```json
 GET /api/person_id
 GET /api/person_name
-
+```
 
 Response Example (200 Ok):
 
+```json
 {
   "status": "success",
   "data": {
@@ -92,10 +95,11 @@ Content-Type: application/json
   "name": "Jane Doe",
   "age": 28
 }
-
+```
 
 Response Example (200 Ok):
 
+```json
 {
   "status": "success",
   "data": {
@@ -120,14 +124,15 @@ Remove a person by their ID or Name.
 ```json
 DELETE /person/person_id
 DELETE /person/person_name
+```
 
 
 Response Example (204 No Content):
 
+```json
 {
   "status": "success",
   "data": null,
 }
-
 
 ```
