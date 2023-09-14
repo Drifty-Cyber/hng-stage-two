@@ -79,7 +79,7 @@ Response Example (200 Ok):
 
 **Endpoint:** `PATCH /api/:param`
 
-Modify details of an existing person by their ID. Provide a JSON object with the fields you want to update.
+Modify details of an existing person by their ID or Name. Provide a JSON object with the fields you want to update.
 
 **Request Example:**
 
@@ -106,5 +106,28 @@ Response Example (200 Ok):
     }
   }
 }
+
+```
+
+## Delete a Person
+
+**Endpoint:** `DELETE /api/:param`
+
+Remove a person by their ID or Name.
+
+**Request Example:**
+
+```json
+DELETE /person/person_id
+DELETE /person/person_name
+
+
+Response Example (204 No Content):
+
+{
+  "status": "success",
+  "data": null,
+}
+
 
 ```
