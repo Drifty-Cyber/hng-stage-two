@@ -6,19 +6,16 @@ const router = express.Router();
 // Get All Users
 router.route('/').get(userController.getAllUsers);
 
-// Get User by ID
-router.get('/:id', userController.getUser);
+// Get User by ID or Name
+router.get('/:param', userController.getUser);
 
 // Create User
 router.route('/').post(userController.createUser);
 
-// Update and Delete User by ID
+// Update and Delete User by ID or Name
 router
-  .route('/:id')
+  .route('/:param')
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
-
-// Get User by name
-router.route('/name/:name').get(userController.getUserByName);
 
 module.exports = router;

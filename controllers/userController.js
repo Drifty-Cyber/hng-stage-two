@@ -23,23 +23,6 @@ exports.getAllUsers = async (req, res, next) => {
     });
     // console.log(err);
   }
-
-  //   try {
-  //     const { name } = req.query;
-  //     let query = {};
-  //     if (name) {
-  //       query = { name };
-  //     }
-  //     const users = await User.find(query);
-  //     res.status(200).json({
-  //       status: 'success',
-  //       data: {
-  //         users,
-  //       },
-  //     });
-  //   } catch (error) {
-  //     res.status(500).json({ error: 'Internal server error' });
-  //   }
 };
 
 exports.createUser = async (req, res, next) => {
@@ -63,27 +46,23 @@ exports.createUser = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
-    res.status(200).json({
-      status: 'success',
-      data: {
-        user,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'error',
-      message: err.message,
-    });
-    // console.log(err);
-  }
-};
+    const param = req.params.param.trim();
+    let user;
 
-exports.getUserByName = async (req, res, next) => {
-  try {
-    const name = req.params.name.trim();
-    console.log(name);
-    const user = await User.find({ name: req.params.name });
+    // Check if the parameter is a valid ObjectId
+    if (/^[0-9a-fA-F]{24}$/.test(param)) {
+      user = await User.findById(param);
+    } else {
+      // Treat the parameter as a name, allowing spaces
+      user = await User.findOne({ name: { $regex: new RegExp(param, 'i') } });
+    }
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'User not found',
+      });
+    }
 
     res.status(200).json({
       status: 'success',
@@ -92,19 +71,36 @@ exports.getUserByName = async (req, res, next) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: 'error',
       message: err.message,
     });
-    console.log(err.message);
   }
 };
 
 exports.updateUser = async (req, res, next) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const param = req.params.param.trim();
+    let user;
+
+    // Check if the parameter is a valid ObjectId
+    if (/^[0-9a-fA-F]{24}$/.test(param)) {
+      user = await User.findByIdAndUpdate(param, req.body, { new: true });
+    } else {
+      // Treat the parameter as a name, allowing spaces
+      user = await User.findOneAndUpdate(
+        { name: { $regex: new RegExp(param, 'i') } },
+        req.body,
+        { new: true }
+      );
+    }
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'User not found',
+      });
+    }
 
     res.status(200).json({
       status: 'success',
@@ -113,27 +109,43 @@ exports.updateUser = async (req, res, next) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: 'error',
       message: err.message,
     });
-    console.log(err);
   }
 };
 
 exports.deleteUser = async (req, res, next) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
+    const param = req.params.param.trim();
+    let user;
+
+    // Check if the parameter is a valid ObjectId
+    if (/^[0-9a-fA-F]{24}$/.test(param)) {
+      user = await User.findByIdAndRemove(param);
+    } else {
+      // Treat the parameter as a name, allowing spaces
+      user = await User.findOneAndRemove({
+        name: { $regex: new RegExp(param, 'i') },
+      });
+    }
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'User not found',
+      });
+    }
 
     res.status(204).json({
       status: 'success',
       data: null,
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: 'error',
       message: err.message,
     });
-    console.log(err);
   }
 };
