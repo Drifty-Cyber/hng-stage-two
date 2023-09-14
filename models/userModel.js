@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'A person must have a name'],
+    unique: true,
   },
   age: Number,
 });

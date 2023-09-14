@@ -19,6 +19,6 @@ router
   .delete(userController.deleteUser);
 
 // Get User by name
-router.route('/:name').get(userController.getUserByName);
+router.route('/name/:name').get(userController.getUserByName);
 
 module.exports = router;
