@@ -24,3 +24,12 @@ A simple REST API for CRUD operations on a "person" resource using Node.js and M
 git clone https://github.com/Drifty-Cyber/hng-stage-two.git
 cd nodejs-person-api
 
+2.  Install Dependencies
+
+```bash
+npm install
+
+3.  Start the server
+
+```bash
+node server.js
