@@ -46,3 +46,37 @@ Response Example (201 Created):
   }
 }
 ```
+
+## Create a New Person
+
+**Endpoint:** `POST /api`
+
+Create a new person by providing a JSON object with the following fields:
+
+- `name` (string, required): The name of the person.
+- `age` (number, required): The age of the person.
+
+**Request Example:**
+
+```json
+POST /api
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "age": 30
+}
+
+Response Example (201 Created):
+
+{
+  "status": "success",
+  "data": {
+    "user": {
+      "_id": "person_id",
+      "name": "John Doe",
+      "age": 30
+    }
+  }
+}
+```
