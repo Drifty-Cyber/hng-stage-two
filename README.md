@@ -27,6 +27,7 @@ Create a new person by providing a JSON object with the following fields:
 ```json
 POST /api
 Content-Type: application/json
+```
 
 {
   "name": "John Doe",
