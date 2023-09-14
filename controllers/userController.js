@@ -1,5 +1,24 @@
 const User = require('../models/userModel');
 
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        users,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'error',
+      message: err.message,
+    });
+    console.log(err);
+  }
+};
+
 exports.createUser = async (req, res, next) => {
   try {
     const name = req.body;
@@ -12,6 +31,10 @@ exports.createUser = async (req, res, next) => {
       },
     });
   } catch (err) {
+    res.status(500).json({
+      status: 'error',
+      message: err.message,
+    });
     console.log(err);
   }
 };
@@ -26,6 +49,10 @@ exports.getUser = async (req, res, next) => {
       },
     });
   } catch (err) {
+    res.status(404).json({
+      status: 'error',
+      message: err.message,
+    });
     console.log(err);
   }
 };
@@ -44,6 +71,10 @@ exports.updateUser = async (req, res, next) => {
       },
     });
   } catch (err) {
+    res.status(404).json({
+      status: 'error',
+      message: err.message,
+    });
     console.log(err);
   }
 };
@@ -57,6 +88,10 @@ exports.deleteUser = async (req, res, next) => {
       data: null,
     });
   } catch (err) {
+    res.status(404).json({
+      status: 'error',
+      message: err.message,
+    });
     console.log(err);
   }
 };
