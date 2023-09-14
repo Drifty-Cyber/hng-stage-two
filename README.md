@@ -1,35 +1,34 @@
-# Node.js MongoDB CRUD API
+# Person API Documentation
 
-A simple REST API for CRUD operations on a "person" resource using Node.js and MongoDB.
+This documentation provides details on the CRUD (Create, Read, Update, Delete) endpoints available in the Person API. The API allows you to manage person records in the database.
 
 ## Table of Contents
 
-1. [Prerequisites](#prerequisites)
-2. [Installation](#installation)
-3. [API Endpoints](#api-endpoints)
-4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [License](#license)
+1. [Create a New Person](#create-a-new-person)
+2. [Retrieve a Person by ID](#retrieve-a-person-by-id)
+3. [Update a Person](#update-a-person)
+4. [Delete a Person](#delete-a-person)
 
-## Prerequisites
+## Base URL
 
-- Node.js and npm installed
-- MongoDB installed and running
+The base URL for all API endpoints is `https://your-api-domain.com/api`.
 
-## Installation
+## Create a New Person
 
-1. Clone this repository.
+**Endpoint:** `POST /person`
 
-```bash
-git clone https://github.com/Drifty-Cyber/hng-stage-two.git
-cd nodejs-person-api
+Create a new person by providing a JSON object with the following fields:
 
-2.  Install Dependencies
+- `name` (string, required): The name of the person.
+- `age` (number, required): The age of the person.
 
-```bash
-npm install
+**Request Example:**
 
-3.  Start the server
+```json
+POST /person
+Content-Type: application/json
 
-```bash
-node server.js
+{
+  "name": "John Doe",
+  "age": 30
+}
