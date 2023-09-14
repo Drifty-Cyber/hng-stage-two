@@ -56,7 +56,8 @@ Retrieve details of a person by their ID.
 **Request Example:**
 
 ```json
-GET /person/person_id
+GET /api/person_id
+GET /api/person_name
 
 
 Response Example (200 Ok):
