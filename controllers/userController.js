@@ -21,7 +21,6 @@ exports.getAllUsers = async (req, res, next) => {
       status: 'error',
       message: err.message,
     });
-    // console.log(err);
   }
 };
 
