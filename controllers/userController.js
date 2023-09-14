@@ -4,6 +4,12 @@ exports.getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find();
 
+    if (!users)
+      return res.status(404).json({
+        status: 'error',
+        message: 'No person found with that ID',
+      });
+
     res.status(200).json({
       status: 'success',
       data: {
@@ -15,13 +21,30 @@ exports.getAllUsers = async (req, res, next) => {
       status: 'error',
       message: err.message,
     });
-    console.log(err);
+    // console.log(err);
   }
+
+  //   try {
+  //     const { name } = req.query;
+  //     let query = {};
+  //     if (name) {
+  //       query = { name };
+  //     }
+  //     const users = await User.find(query);
+  //     res.status(200).json({
+  //       status: 'success',
+  //       data: {
+  //         users,
+  //       },
+  //     });
+  //   } catch (error) {
+  //     res.status(500).json({ error: 'Internal server error' });
+  //   }
 };
 
 exports.createUser = async (req, res, next) => {
   try {
-    const name = req.body;
+    // const name = req.body;
     const user = await User.create(req.body);
 
     res.status(201).json({
@@ -35,13 +58,12 @@ exports.createUser = async (req, res, next) => {
       status: 'error',
       message: err.message,
     });
-    console.log(err);
   }
 };
 
 exports.getUser = async (req, res, next) => {
   try {
-    const user = await User.findOne({ name: req.params.name });
+    const user = await User.findById(req.params.id);
     res.status(200).json({
       status: 'success',
       data: {
@@ -53,16 +75,28 @@ exports.getUser = async (req, res, next) => {
       status: 'error',
       message: err.message,
     });
-    console.log(err);
+    // console.log(err);
   }
+};
+
+exports.getUserByName = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ name: req.params.name });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        user,
+      },
+    });
+  } catch (err) {}
 };
 
 exports.updateUser = async (req, res, next) => {
   try {
-    const user = await User.findOneAndUpdate(
-      { name: req.params.name },
-      req.body
-    );
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
 
     res.status(200).json({
       status: 'success',
