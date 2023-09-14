@@ -51,13 +51,47 @@ Response Example (201 Created):
 
 **Endpoint:** `GET /api/:param`
 
-Retrieve details of a person by their ID.
+Retrieve details of a person by their ID or Name.
 
 **Request Example:**
 
 ```json
 GET /api/person_id
 GET /api/person_name
+
+
+Response Example (200 Ok):
+
+{
+  "status": "success",
+  "data": {
+    "user": {
+      "_id": "person_id",
+      "name": "John Doe",
+      "age": 30
+    }
+  }
+}
+
+```
+
+## Update a Person
+
+**Endpoint:** `PATCH /api/:param`
+
+Modify details of an existing person by their ID. Provide a JSON object with the fields you want to update.
+
+**Request Example:**
+
+```json
+PATCH /person/person_id
+PATCH /person/person_name
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "age": 28
+}
 
 
 Response Example (200 Ok):
