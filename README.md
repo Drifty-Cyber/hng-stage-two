@@ -5,7 +5,7 @@ This documentation provides details on the CRUD (Create, Read, Update, Delete) e
 ## Table of Contents
 
 1. [Create a New Person](#create-a-new-person)
-2. [Retrieve a Person by ID](#retrieve-a-person-by-id)
+2. [Retrieve a Person by ID or Name](#retrieve-a-person-by-id)
 3. [Update a Person](#update-a-person)
 4. [Delete a Person](#delete-a-person)
 
@@ -47,27 +47,19 @@ Response Example (201 Created):
 }
 ```
 
-## Create a New Person
+## Get a Person
 
-**Endpoint:** `POST /api`
+**Endpoint:** `GET /api/:param`
 
-Create a new person by providing a JSON object with the following fields:
-
-- `name` (string, required): The name of the person.
-- `age` (number, required): The age of the person.
+Retrieve details of a person by their ID.
 
 **Request Example:**
 
 ```json
-POST /api
-Content-Type: application/json
+GET /person/person_id
 
-{
-  "name": "John Doe",
-  "age": 30
-}
 
-Response Example (201 Created):
+Response Example (200 Ok):
 
 {
   "status": "success",
@@ -79,4 +71,5 @@ Response Example (201 Created):
     }
   }
 }
+
 ```
