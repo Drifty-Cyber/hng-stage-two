@@ -15,7 +15,7 @@ The base URL for all API endpoints is `https://your-api-domain.com/api`.
 
 ## Create a New Person
 
-**Endpoint:** `POST /person`
+**Endpoint:** `POST /api`
 
 Create a new person by providing a JSON object with the following fields:
 
@@ -25,7 +25,41 @@ Create a new person by providing a JSON object with the following fields:
 **Request Example:**
 
 ```json
-POST /person
+POST /api
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "age": 30
+}
+
+Response Example (201 Created):
+
+{
+  "status": "success",
+  "data": {
+    "user": {
+      "_id": "person_id",
+      "name": "John Doe",
+      "age": 30
+    }
+  }
+}
+
+
+## Create a New Person
+
+**Endpoint:** `POST /api`
+
+Create a new person by providing a JSON object with the following fields:
+
+- `name` (string, required): The name of the person.
+- `age` (number, required): The age of the person.
+
+**Request Example:**
+
+```json
+POST /api
 Content-Type: application/json
 
 {
