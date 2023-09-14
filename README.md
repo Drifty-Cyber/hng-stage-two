@@ -101,8 +101,8 @@ Response Example (200 Ok):
   "data": {
     "user": {
       "_id": "person_id",
-      "name": "John Doe",
-      "age": 30
+      "name": "Jane Doe",
+      "age": 28
     }
   }
 }
