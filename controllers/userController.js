@@ -49,11 +49,9 @@ exports.getUser = async (req, res, next) => {
     const param = req.params.param.trim();
     let user;
 
-    // Check if the parameter is a valid ObjectId
     if (/^[0-9a-fA-F]{24}$/.test(param)) {
       user = await User.findById(param);
     } else {
-      // Treat the parameter as a name, allowing spaces
       user = await User.findOne({ name: { $regex: new RegExp(param, 'i') } });
     }
 
@@ -83,11 +81,9 @@ exports.updateUser = async (req, res, next) => {
     const param = req.params.param.trim();
     let user;
 
-    // Check if the parameter is a valid ObjectId
     if (/^[0-9a-fA-F]{24}$/.test(param)) {
       user = await User.findByIdAndUpdate(param, req.body, { new: true });
     } else {
-      // Treat the parameter as a name, allowing spaces
       user = await User.findOneAndUpdate(
         { name: { $regex: new RegExp(param, 'i') } },
         req.body,
@@ -121,11 +117,9 @@ exports.deleteUser = async (req, res, next) => {
     const param = req.params.param.trim();
     let user;
 
-    // Check if the parameter is a valid ObjectId
     if (/^[0-9a-fA-F]{24}$/.test(param)) {
       user = await User.findByIdAndRemove(param);
     } else {
-      // Treat the parameter as a name, allowing spaces
       user = await User.findOneAndRemove({
         name: { $regex: new RegExp(param, 'i') },
       });
