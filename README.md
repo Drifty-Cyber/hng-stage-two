@@ -42,9 +42,6 @@ https://documenter.getpostman.com/view/5916628/UVkqrEs8
 ## Using Git (recommended)
 1. Clone the project from github.
 
-```
-git clone https://github.com/devwalex/e-wallet-system.git
-```
 
 ## Using manual download ZIP
 
