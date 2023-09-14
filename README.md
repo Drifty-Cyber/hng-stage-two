@@ -21,6 +21,6 @@ A simple REST API for CRUD operations on a "person" resource using Node.js and M
 1. Clone this repository.
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Drifty-Cyber/hng-stage-two.git
 cd nodejs-person-api
 
