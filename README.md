@@ -88,8 +88,8 @@ Modify details of an existing person by their ID or Name. Provide a JSON object 
 **Request Example:**
 
 ```json
-PATCH /person/person_id
-PATCH /person/person_name
+PATCH /api/person_id
+PATCH /api/person_name
 Content-Type: application/json
 
 {
@@ -123,8 +123,8 @@ Remove a person by their ID or Name.
 **Request Example:**
 
 ```json
-DELETE /person/person_id
-DELETE /person/person_name
+DELETE /api/person_id
+DELETE /api/person_name
 ```
 
 
