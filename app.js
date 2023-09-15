@@ -1,7 +1,7 @@
 const express = require('express');
-const xss = require('xss');
 const morgan = require('morgan');
-const userRouter = require('./routes/userRoutes');
+const xss = require('xss-clean');
+const personRouter = require('./routes/personRoutes');
 
 // Create Express app
 const app = express();
@@ -14,9 +14,10 @@ if (process.env.NODE_ENV === 'development') {
 // Express Body Parser
 app.use(express.json());
 
-// app.use(xss());
+// Use XSS
+app.use(xss());
 
 // Mount the Router
-app.use('/api', userRouter);
+app.use('/api', personRouter);
 
 module.exports = app;

@@ -4,12 +4,6 @@ exports.getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find();
 
-    if (!users)
-      return res.status(404).json({
-        status: 'error',
-        message: 'No person found with that ID',
-      });
-
     res.status(200).json({
       status: 'success',
       data: {
@@ -26,7 +20,6 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
   try {
-    // const name = req.body;
     const user = await User.create(req.body);
 
     res.status(201).json({
